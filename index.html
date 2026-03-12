@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบการประเมินหน่วยงาน ภารกิจวิชาการ โรงพยาบาลมะเร็งอุบลราชธานี</title>
+    
+    <!-- ลิงก์ไปยังไฟล์ Manifest ตัวจริง -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+    <link rel="apple-touch-icon" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+    <meta name="theme-color" content="#0369a1">
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* ป้องกันการเลื่อนซ้ำซ้อนด้านนอก */
+            background-color: #f8fafc;
+            font-family: 'Sarabun', sans-serif;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+        
+        /* สไตล์สำหรับปุ่มติดตั้งแอปลอยตัว */
+        #install-btn {
+            display: none; /* ซ่อนไว้ก่อน จะโชว์เมื่อเบราว์เซอร์พร้อมให้ติดตั้ง */
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #0369a1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        #install-btn:hover { 
+            background-color: #0284c7;
+            transform: translateY(-2px);
+        }
+        #install-btn svg { 
+            width: 20px; 
+            height: 20px; 
+            fill: currentColor; 
+        }
+    </style>
+</head>
+<body>
+    <iframe src="https://script.google.com/macros/s/AKfycbyzXqTObFyYTblsuQjaWsJa6qjtYfJK4lZa8K_JnoIoFtpzMgKk55emoozxzVAwQ1Nr/exec"></iframe>
+
+    <!-- ปุ่มติดตั้ง PWA แบบกำหนดเอง -->
+    <button id="install-btn">
+        <svg viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        ติดตั้งแอป (Install)
+    </button>
+
+    <script>
+        // 1. ลงทะเบียน Service Worker จากไฟล์ sw.js
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // ป้องกัน Error เวลาเปิดในหน้า Preview (blob:) หรือเปิดจากไฟล์ในเครื่อง (file:) โดยตรง
+                if (window.location.protocol === 'https:' || window.location.protocol === 'http:') {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(reg => console.log('Service Worker Registered!', reg.scope))
+                        .catch(err => console.log('Service Worker Note (expected in dev):', err.message));
+                } else {
+                    console.log('Service Worker skipped for local/preview environment.');
+                }
+            });
+        }
+
+        // 2. ดักจับ Event ก่อนติดตั้ง เพื่อแสดงปุ่มของเราเอง
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // หยุดไม่ให้เบราว์เซอร์โชว์ mini-infobar อัตโนมัติ (ในบางเครื่อง)
+            e.preventDefault();
+            // เก็บ event ไว้เรียกใช้ตอนกดปุ่ม
+            deferredPrompt = e;
+            // แสดงปุ่มติดตั้ง
+            installBtn.style.display = 'flex';
+            console.log('พร้อมให้ติดตั้ง PWA แล้ว');
+        });
+
+        // 3. เมื่อกดปุ่ม ให้แสดงหน้าต่างติดตั้งของเบราว์เซอร์
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // แสดง prompt ติดตั้ง
+                deferredPrompt.prompt();
+                // รอฟังผลลัพธ์ว่าผู้ใช้กดยอมรับหรือปฏิเสธ
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log('ผลการติดตั้ง:', outcome);
+                // ล้างค่า
+                deferredPrompt = null;
+                // ซ่อนปุ่ม
+                installBtn.style.display = 'none';
+            }
+        });
+
+        // 4. ดักจับ Event เมื่อติดตั้งสำเร็จ
+        window.addEventListener('appinstalled', () => {
+            console.log('ติดตั้งแอปลงเครื่องสำเร็จแล้ว');
+            installBtn.style.display = 'none'; // ซ่อนปุ่มถาวร
+        });
+    </script>
+</body>
+</html>
