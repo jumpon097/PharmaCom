@@ -1,5 +1,5 @@
 {
-  "name": "PharmaCom - ระบบสื่อสารด้วยใจ",
+  "name": "ระบบสื่อสารด้วยใจ - หน้าหลัก",
   "short_name": "PharmaCom",
   "start_url": "./",
   "scope": "./",
@@ -8,12 +8,12 @@
   "theme_color": "#0369a1",
   "icons": [
     {
-      "src": "./icons/icon-192.png",
+      "src": "https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./icons/icon-512.png",
+      "src": "https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png",
       "sizes": "512x512",
       "type": "image/png"
     }
