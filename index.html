@@ -1,129 +1,125 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PharmaCom - ระบบสื่อสารด้วยใจ</title>
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" type="image/png" href="./icons/icon-192.png">
-  <link rel="apple-touch-icon" href="./icons/icon-192.png">
-  <meta name="theme-color" content="#0369a1">
-  <style>
-    body {
-      margin: 0; font-family: Sarabun, system-ui, sans-serif; background:#f8fafc; color:#0f172a;
-    }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    .hero {
-      background: linear-gradient(135deg,#0369a1,#1d4ed8); color:white; border-radius:24px; padding:28px;
-      box-shadow: 0 10px 30px rgba(3,105,161,.20);
-    }
-    h1 { margin:0 0 8px; font-size:32px; }
-    p { margin:0; line-height:1.6; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:24px; }
-    .card {
-      display:block; text-decoration:none; color:inherit; background:white; border:1px solid #e2e8f0; border-radius:20px; padding:20px;
-      box-shadow: 0 8px 20px rgba(15,23,42,.05); transition:.2s ease;
-    }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(15,23,42,.10); }
-    .card h3 { margin:10px 0 8px; font-size:20px; }
-    .card p { color:#475569; font-size:14px; }
-    .badge {
-      display:inline-block; font-size:12px; font-weight:700; background:#e0f2fe; color:#0369a1;
-      padding:6px 10px; border-radius:999px;
-    }
-    .top-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
-    .btn {
-      display:inline-block; text-decoration:none; font-weight:700; border-radius:999px; padding:12px 18px;
-      background:white; color:#0369a1;
-    }
-    .btn-dark { background:#0f172a; color:white; }
-    #installBtn {
-      display:none; position: fixed; right:20px; bottom:20px; border:none; border-radius:999px; padding:12px 18px;
-      background:#0369a1; color:white; font-weight:700; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.2); z-index:999;
-    }
-  </style>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสื่อสารด้วยใจ ห้องยา หอผู้ป่วย โรงพยาบาลมะเร็งอุบลราชธานี</title>
+    
+    <!-- ลิงก์ไปยังไฟล์ Manifest ตัวจริง -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+    <link rel="apple-touch-icon" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+    <meta name="theme-color" content="#0369a1">
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* ป้องกันการเลื่อนซ้ำซ้อนด้านนอก */
+            background-color: #f8fafc;
+            font-family: 'Sarabun', sans-serif;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+        
+        /* สไตล์สำหรับปุ่มติดตั้งแอปลอยตัว */
+        #install-btn {
+            display: none; /* ซ่อนไว้ก่อน จะโชว์เมื่อเบราว์เซอร์พร้อมให้ติดตั้ง */
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #0369a1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        #install-btn:hover { 
+            background-color: #0284c7;
+            transform: translateY(-2px);
+        }
+        #install-btn svg { 
+            width: 20px; 
+            height: 20px; 
+            fill: currentColor; 
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <h1>PharmaCom</h1>
-      <p>ระบบสื่อสารด้วยใจ ห้องยา - หอผู้ป่วย โรงพยาบาลมะเร็งอุบลราชธานี</p>
-      <div class="top-actions">
-        <a class="btn" href="./dashboard/">เปิดหน้า Dashboard</a>
-        <a class="btn btn-dark" href="https://script.google.com/macros/s/AKfycbwi1Uj2CS4SKnzxBTNFgkHCmUQvYd8wkxKR5A25_H_6xAdS-F_hOoTIqDD_D8reTY1hLA/exec" target="_blank" rel="noopener noreferrer">เปิด Apps Script ต้นทาง</a>
-      </div>
-    </section>
+    <iframe src="https://script.google.com/macros/s/AKfycbwi1Uj2CS4SKnzxBTNFgkHCmUQvYd8wkxKR5A25_H_6xAdS-F_hOoTIqDD_D8reTY1hLA/exec"></iframe>
 
-    <div class="grid">
-      
-      <a class="card" href="./wards/sarocha/">
-        <div class="badge">WARD</div>
-        <h3>สโรชา</h3>
-        <p>เปิดหน้าวอร์ด สโรชา</p>
-      </a>
-      <a class="card" href="./wards/sattabongkot/">
-        <div class="badge">WARD</div>
-        <h3>สัตตบงกช</h3>
-        <p>เปิดหน้าวอร์ด สัตตบงกช</p>
-      </a>
-      <a class="card" href="./wards/busabong/">
-        <div class="badge">WARD</div>
-        <h3>บุษบง</h3>
-        <p>เปิดหน้าวอร์ด บุษบง</p>
-      </a>
-      <a class="card" href="./wards/busaban/">
-        <div class="badge">WARD</div>
-        <h3>บุษบัน</h3>
-        <p>เปิดหน้าวอร์ด บุษบัน</p>
-      </a>
-      <a class="card" href="./wards/patama/">
-        <div class="badge">WARD</div>
-        <h3>ปัทมา</h3>
-        <p>เปิดหน้าวอร์ด ปัทมา</p>
-      </a>
-      <a class="card" href="./wards/pathumman/">
-        <div class="badge">WARD</div>
-        <h3>ปทุมมาลย์</h3>
-        <p>เปิดหน้าวอร์ด ปทุมมาลย์</p>
-      </a>
-      <a class="card" href="./wards/icu/">
-        <div class="badge">WARD</div>
-        <h3>ICU</h3>
-        <p>เปิดหน้าวอร์ด ICU</p>
-      </a>
-      <a class="card" href="./wards/bmt/">
-        <div class="badge">WARD</div>
-        <h3>BMT</h3>
-        <p>เปิดหน้าวอร์ด BMT</p>
-      </a>
-    </div>
-  </div>
+    <!-- ปุ่มติดตั้ง PWA แบบกำหนดเอง -->
+    <button id="install-btn">
+        <svg viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        ติดตั้งแอป (Install)
+    </button>
 
-  <button id="installBtn">ติดตั้งแอปหน้าเมนู</button>
+    <script>
+        // 1. ลงทะเบียน Service Worker จากไฟล์ sw.js
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // ป้องกัน Error เวลาเปิดในหน้า Preview (blob:) หรือเปิดจากไฟล์ในเครื่อง (file:) โดยตรง
+                if (window.location.protocol === 'https:' || window.location.protocol === 'http:') {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(reg => console.log('Service Worker Registered!', reg.scope))
+                        .catch(err => console.log('Service Worker Note (expected in dev):', err.message));
+                } else {
+                    console.log('Service Worker skipped for local/preview environment.');
+                }
+            });
+        }
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => console.error(err));
-      });
-    }
-    let deferredPrompt = null;
-    const installBtn = document.getElementById('installBtn');
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'block';
-    });
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-    });
-    window.addEventListener('appinstalled', () => {
-      installBtn.style.display = 'none';
-    });
-  </script>
+        // 2. ดักจับ Event ก่อนติดตั้ง เพื่อแสดงปุ่มของเราเอง
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // หยุดไม่ให้เบราว์เซอร์โชว์ mini-infobar อัตโนมัติ (ในบางเครื่อง)
+            e.preventDefault();
+            // เก็บ event ไว้เรียกใช้ตอนกดปุ่ม
+            deferredPrompt = e;
+            // แสดงปุ่มติดตั้ง
+            installBtn.style.display = 'flex';
+            console.log('พร้อมให้ติดตั้ง PWA แล้ว');
+        });
+
+        // 3. เมื่อกดปุ่ม ให้แสดงหน้าต่างติดตั้งของเบราว์เซอร์
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // แสดง prompt ติดตั้ง
+                deferredPrompt.prompt();
+                // รอฟังผลลัพธ์ว่าผู้ใช้กดยอมรับหรือปฏิเสธ
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log('ผลการติดตั้ง:', outcome);
+                // ล้างค่า
+                deferredPrompt = null;
+                // ซ่อนปุ่ม
+                installBtn.style.display = 'none';
+            }
+        });
+
+        // 4. ดักจับ Event เมื่อติดตั้งสำเร็จ
+        window.addEventListener('appinstalled', () => {
+            console.log('ติดตั้งแอปลงเครื่องสำเร็จแล้ว');
+            installBtn.style.display = 'none'; // ซ่อนปุ่มถาวร
+        });
+    </script>
 </body>
 </html>
