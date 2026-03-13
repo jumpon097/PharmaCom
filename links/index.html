@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>รวมลิงก์ระบบสื่อสารด้วยใจ</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Sarabun', sans-serif;
+      background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+      color: #0f172a;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+    .top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .title {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0;
+    }
+    .sub {
+      color: #475569;
+      margin-top: 6px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #0f172a;
+      box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    }
+    .hero {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 10px 28px rgba(2,132,199,.08);
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0 0 14px 0;
+      color: #1e3a8a;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.05);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      border-color: #93c5fd;
+    }
+    .card h3 {
+      margin: 10px 0 8px;
+      font-size: 20px;
+    }
+    .card p {
+      margin: 0;
+      color: #64748b;
+      font-size: 13px;
+      word-break: break-all;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .dashboard {
+      border-color: #c7d2fe;
+      background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
+    }
+    .install {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      display: none;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      background: #0f172a;
+      color: white;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1 class="title">รวมลิงก์ระบบสื่อสารด้วยใจ</h1>
+        <div class="sub">เลือก Dashboard หรือหน้าวอร์ดที่ต้องการเปิดใช้งาน</div>
+      </div>
+      <a class="btn" href="../">← กลับหน้าหลักเดิม</a>
+    </div>
+
+    <div class="hero">
+      <div class="section-title">ลิงก์หลัก</div>
+      <div class="grid">
+        <a class="card dashboard" href="../dashboard/">
+          <div class="badge">Dashboard</div>
+          <h3>หน้าจอรวม</h3>
+          <p>ดูสถานะการสื่อสารทั้งหมดในภาพรวม</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="section-title">ลิงก์วอร์ดทั้ง 8</div>
+      <div class="grid">
+        <a class="card" href="../wards/sarocha/">
+        <div class="badge">วอร์ด</div>
+        <h3>สโรชา</h3>
+        <p>ID: 1773350275265</p>
+      </a>
+<a class="card" href="../wards/sattabongkot/">
+        <div class="badge">วอร์ด</div>
+        <h3>สัตตบงกช</h3>
+        <p>ID: 1773350292289</p>
+      </a>
+<a class="card" href="../wards/busabong/">
+        <div class="badge">วอร์ด</div>
+        <h3>บุษบง</h3>
+        <p>ID: 1773350308392</p>
+      </a>
+<a class="card" href="../wards/busaban/">
+        <div class="badge">วอร์ด</div>
+        <h3>บุษบัน</h3>
+        <p>ID: 1773360203772</p>
+      </a>
+<a class="card" href="../wards/patama/">
+        <div class="badge">วอร์ด</div>
+        <h3>ปัทมา</h3>
+        <p>ID: 1773360217137</p>
+      </a>
+<a class="card" href="../wards/pathumman/">
+        <div class="badge">วอร์ด</div>
+        <h3>ปทุมมาลย์</h3>
+        <p>ID: 1773360245622</p>
+      </a>
+<a class="card" href="../wards/icu/">
+        <div class="badge">วอร์ด</div>
+        <h3>ICU</h3>
+        <p>ID: 1773360255920</p>
+      </a>
+<a class="card" href="../wards/bmt/">
+        <div class="badge">วอร์ด</div>
+        <h3>BMT</h3>
+        <p>ID: 1773360269811</p>
+      </a>
+      </div>
+    </div>
+  </div>
+
+  <button id="installBtn" class="install">ติดตั้งหน้ารวมลิงก์</button>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.error(err));
+      });
+    }
+
+    let deferredPrompt = null;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+    });
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    });
+    window.addEventListener('appinstalled', () => {
+      installBtn.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

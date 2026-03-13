@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ปทุมมาลย์ - ระบบสื่อสารด้วยใจ</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+  <meta name="theme-color" content="#4338ca" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #eef2ff;
+      font-family: 'Sarabun', sans-serif;
+      overflow: hidden;
+    }
+    .topbar {
+      height: 56px;
+      background: #4338ca;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .back {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
+    }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 56px);
+      border: none;
+      display: block;
+      background: white;
+    }
+    #installBtn {
+      display: none;
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: #4338ca;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="title">ปทุมมาลย์ - หน้าวอร์ด</div>
+    <div class="actions">
+      <a class="back" href="../../links/">รวมลิงก์</a>
+      <a class="back" href="../../">หน้าหลัก</a>
+    </div>
+  </div>
+
+  <iframe src="https://script.google.com/macros/s/AKfycbwi1Uj2CS4SKnzxBTNFgkHCmUQvYd8wkxKR5A25_H_6xAdS-F_hOoTIqDD_D8reTY1hLA/exec?view=ward&id=1773360245622"></iframe>
+
+  <button id="installBtn">ติดตั้งแอป ปทุมมาลย์</button>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.error('sw error:', err));
+      });
+    }
+    let deferredPrompt = null;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+    });
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    });
+    window.addEventListener('appinstalled', () => {
+      installBtn.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
