@@ -1,1 +1,136 @@
-<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10b981"><link rel="manifest" href="./manifest.webmanifest"><title>Offline Pharmacy HIS V10</title><style>body{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Thai",Tahoma,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#ecfdf5,#fdf2f8,#f5f3ff);color:#134e4a}.wrap{max-width:900px;padding:22px}.hero{background:#ffffffee;border:1px solid #ecfdf5;border-radius:28px;padding:24px;box-shadow:0 18px 48px #0f766e18}.logo{width:76px;height:76px}.logo img{width:100%;height:100%;object-fit:contain}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}.card{display:block;text-decoration:none;color:#134e4a;padding:18px;border-radius:20px;background:#fff;border:1px solid #d1fae5;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px #0f766e18}.card b{font-size:18px}.card p,.note{font-size:13px;line-height:1.6;color:#64748b}.pill{display:inline-block;padding:7px 10px;border-radius:999px;background:#d1fae5;font-size:12px;font-weight:800}.credit{margin-top:15px;padding-top:12px;border-top:1px dashed #d1fae5;text-align:center;font-size:11px;line-height:1.65;color:#64748b}.credit a{color:#0f766e;text-decoration:none;font-weight:800}</style></head><body><div class="wrap"><div class="hero"><div class="logo"><img src="./assets/logoUBCH.png" alt="logo"></div><h1>Offline Pharmacy HIS V10</h1><span class="pill">PWA · เปิดออนไลน์ครั้งแรกเพื่อติดตั้ง</span><p>เลือก workflow ให้เหมาะกับรูปแบบออกหน่วยของโรงพยาบาล</p><div class="grid"><a class="card" href="./doctor/doctor.html"><b>🩺 เริ่มจากแพทย์</b><p>แพทย์หรือผู้คีย์ยาสร้างใบสั่งพร้อม QR ห้องยา Log in และสแกนเพื่อจัดยา</p></a><a class="card" href="./pharmacy/pharmacy.html"><b>💊 เริ่มจากห้องยา</b><p>ห้องยา Log in คีย์ยา ตรวจฉลาก พิมพ์ฉลาก ส่งจ่ายเงิน และเก็บประวัติ</p></a></div><div class="note">บัญชีผู้ใช้บันทึกเฉพาะในอุปกรณ์นั้น ๆ หลังติดตั้งแล้วข้อมูลและ workflow หลักทำงานออฟไลน์ได้ ก่อนใช้จริงให้ทดลองกับเครื่องพิมพ์ฉลากและ master data ของหน่วยงาน</div><div class="credit">พัฒนาโดย <b>ภก.จุมพล อุทธา</b> · หัวหน้างานคลังยาและเภสัชสารสนเทศ · กลุ่มงานเภสัชกรรม · โรงพยาบาลมะเร็งอุบลราชธานี · โทร <a href="tel:0897179248">0897179248</a></div></div></div><script>if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});</script></body></html>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสื่อสารด้วยใจ ห้องยา หอผู้ป่วย โรงพยาบาลมะเร็งอุบลราชธานี</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+    <link rel="apple-touch-icon" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
+    <meta name="theme-color" content="#0369a1">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f8fafc;
+            font-family: 'Sarabun', sans-serif;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+        #install-btn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #0369a1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        #install-btn:hover {
+            background-color: #0284c7;
+            transform: translateY(-2px);
+        }
+        #install-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        #links-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255,255,255,0.95);
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+        #links-btn:hover {
+            background-color: white;
+            transform: translateY(-1px);
+        }
+        #links-btn span {
+            font-size: 18px;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <a id="links-btn" href="./links/">
+        <span>☰</span> รวมลิงก์ Dashboard / วอร์ด
+    </a>
+
+    <iframe src="https://script.google.com/macros/s/AKfycbwi1Uj2CS4SKnzxBTNFgkHCmUQvYd8wkxKR5A25_H_6xAdS-F_hOoTIqDD_D8reTY1hLA/exec"></iframe>
+
+    <button id="install-btn">
+        <svg viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        ติดตั้งแอป (Install)
+    </button>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                if (window.location.protocol === 'https:' || window.location.protocol === 'http:') {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(reg => console.log('Service Worker Registered!', reg.scope))
+                        .catch(err => console.log('Service Worker Note (expected in dev):', err.message));
+                } else {
+                    console.log('Service Worker skipped for local/preview environment.');
+                }
+            });
+        }
+
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log('ผลการติดตั้ง:', outcome);
+                deferredPrompt = null;
+                installBtn.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
