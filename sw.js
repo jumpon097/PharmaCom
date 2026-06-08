@@ -1,1 +1,36 @@
-const CACHE='offline-pharmacy-his-v10.0.0',RUNTIME='offline-pharmacy-runtime-v10';const CORE=['./','./index.html','./doctor/doctor.html','./pharmacy/pharmacy.html','./manifest.webmanifest','./assets/icon-192.png','./assets/icon-512.png','./assets/logoUBCH.png','./data/list2.xls','./data/use.xls','./data/time1.xls','./templates/DrugList_template.csv','./templates/DrugUse_template.csv','./templates/DrugTime_template.csv','./templates/MealTiming_template.csv','./templates/DoseUnit_template.csv','./templates/Offline_Pharmacy_MasterData_Template_V10.xlsx'];self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>![CACHE,RUNTIME].includes(k)).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(hit=>hit||fetch(e.request).then(resp=>{const copy=resp.clone();caches.open(RUNTIME).then(c=>c.put(e.request,copy)).catch(()=>{});return resp}).catch(()=>e.request.mode==='navigate'?caches.match('./index.html'):Promise.reject('offline'))))});
+const CACHE_NAME = 'pharmacom-root-v1';
+const URLS_TO_CACHE = [
+  './',
+  './index.html',
+  './manifest.json'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(URLS_TO_CACHE))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((key) => key !== CACHE_NAME)
+          .map((key) => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      return cached || fetch(event.request);
+    })
+  );
+});
