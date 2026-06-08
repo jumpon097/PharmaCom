@@ -8,14 +8,13 @@
   <meta name="theme-color" content="#4338ca" />
   <link rel="icon" type="image/png" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
   <link rel="apple-touch-icon" href="https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png">
-
-  <style>
+<style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       background: #eef2ff;
-      font-family: "Sarabun", sans-serif;
+      font-family: 'Sarabun', sans-serif;
       overflow: hidden;
     }
     .topbar {
@@ -31,6 +30,21 @@
     .title {
       font-weight: 700;
       font-size: 16px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .back {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
     }
     iframe {
       width: 100%;
@@ -51,8 +65,8 @@
       color: white;
       font-weight: 700;
       cursor: pointer;
-      z-index: 1000;
       box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      z-index: 1000;
     }
   </style>
 </head>
