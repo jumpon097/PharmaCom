@@ -33,8 +33,18 @@
     const tab = params.get("tab") || "";
     const roomId = params.get("roomId") || "";
     const topic = params.get("topic") || "";
+    const topicCode = params.get("topicCode") || "";
     const replyToken = params.get("replyToken") || "";
     const refMessageId = params.get("refMessageId") || "";
+
+    const topicMap = {
+      NEWS: "แจ้งข่าว",
+      DRUGREADY: "ยาเสร็จ",
+      NOTICE: "แจ้งเตือน",
+      URGENT: "ด่วน"
+    };
+
+    const resolvedTopic = topicCode ? (topicMap[topicCode] || topicCode) : topic;
 
     const gasParams = new URLSearchParams();
     gasParams.set("view", "ward");
@@ -43,7 +53,7 @@
     if (replyToken) gasParams.set("replyToken", replyToken);
     if (tab) gasParams.set("tab", tab);
     if (roomId) gasParams.set("roomId", roomId);
-    if (topic) gasParams.set("topic", topic);
+    if (resolvedTopic) gasParams.set("topic", resolvedTopic);
     if (refMessageId) gasParams.set("refMessageId", refMessageId);
 
     document.getElementById("wardFrame").src = `${GAS_BASE}?${gasParams.toString()}`;
