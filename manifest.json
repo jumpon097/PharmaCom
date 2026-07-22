@@ -1,19 +1,19 @@
 {
-  "name": "ระบบสื่อสารด้วยใจ - หน้าหลัก",
+  "name": "ระบบสื่อสารด้วยใจ · ห้องยา",
   "short_name": "PharmaCom",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#0369a1",
+  "background_color": "#fff7ed",
+  "theme_color": "#9f1239",
   "icons": [
     {
-      "src": "https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png",
+      "src": "./assets/mascot.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://img2.pic.in.th/35F9F2E4-F93B-4E93-8630-AA51B9AE5118.png",
+      "src": "./assets/mascot.png",
       "sizes": "512x512",
       "type": "image/png"
     }
