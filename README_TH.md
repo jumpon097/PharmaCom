@@ -32,6 +32,8 @@ https://script.google.com/macros/s/AKfycbwi1Uj2CS4SKnzxBTNFgkHCmUQvYd8wkxKR5A25_
 - หน้ารวมลิงก์: `/PharmaCom/links/`
 - Dashboard: `/PharmaCom/dashboard/`
 - ICU: `/PharmaCom/wards/icu/`
+- OPD รังสีรักษา: `/PharmaCom/wards/opd-radiotherapy/`
+- สามัญศัลยกรรม (4/1): `/PharmaCom/wards/general-surgery-4-1/`
 
 ## หมายเหตุสำคัญ
 ถ้า Apps Script ของคุณยังไม่รองรับ `?view=dashboard` และ `?view=ward&id=...`
