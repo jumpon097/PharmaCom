@@ -33,6 +33,7 @@ https://script.google.com/macros/s/AKfycbwi1Uj2CS4SKnzxBTNFgkHCmUQvYd8wkxKR5A25_
 - Dashboard: `/PharmaCom/dashboard/`
 - ICU: `/PharmaCom/wards/icu/`
 - OPD รังสีรักษา: `/PharmaCom/wards/opd-radiotherapy/`
+- OPD ศัลยกรรม: `/PharmaCom/wards/opd-surgery/`
 - สามัญศัลยกรรม (4/1): `/PharmaCom/wards/general-surgery-4-1/`
 
 ## หมายเหตุสำคัญ
